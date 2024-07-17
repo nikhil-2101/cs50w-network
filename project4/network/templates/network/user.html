@@ -1,0 +1,84 @@
+{% extends "network/layout.html" %}
+{% load static %}
+{% block body %}
+<label id="user-head">
+    <h1>{{ usr }}
+        {% if request.user.is_authenticated and request.user != usr %}
+        <button onclick="follow_user('{{ usr.id }}');" class="btn btn-dark" id="follow-btn">{{ btnText }}</button>
+        {% endif %}
+    </h1>
+    <p id="follow-data">Followers: {{ followers }} | Following: {{ followings }}</p>
+</label>
+
+<div id="all_posts">
+    <div id="posts">
+        {% for post in posts %}
+        <div class="post-item">
+            <label class="post-content">
+                <label class="time-data">{{ post.time }}</label>
+                <br />
+                <div class="post-text" id="post-text-{{ post.id }}" style="color: black;">{{ post.post }}</div>
+                {% if post.user ==  request.user %}
+                    <button onclick="editPost('{{ post.id }}');" type="button" class="btn btn-link">Edit</button>
+                {% endif %}
+                {% if user.is_authenticated %}
+                {% if post.id in liked_posts %}
+                <div id="like-btn-{{ post.id }}">
+                    <button class="like-btn" onclick="toggleLike('{{ post.id }}');">
+                        Like
+                        <label class="like-count" id="like-no-{{ post.id }}">{{ post.like }}</label>
+                    </button>
+                </div>
+                {% else %}
+                <div id="like-btn-{{ post.id }}">
+                    <button class="like-btn" onclick="toggleLike('{{ post.id }}');">
+                        Like
+                        <label class="like-count" id="like-no-{{ post.id }}">{{ post.like }}</label>
+                    </button>
+                </div>
+                {% endif %}
+                {% else %}
+                <div id="like-btn-{{ post.id }}">
+                    <button class="like-btn" onclick="alert('You must be signed in to like posts');">
+                        Like
+                        <label class="like-count" id="like-no-{{ post.id }}">{{ post.like }}</label>
+                    </button>
+                </div>
+                {% endif %}
+            </label>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if posts.has_previous %}
+        <li>
+            <a href="{% url 'user_profile' usr.id posts.previous_page_number %}">
+                <button class="btn btn-secondary"> &laquo; </button>
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <button class="btn btn-secondary" disabled> &laquo; </button>
+        </li>
+        {% endif %}
+        <li>
+            <a href="#">
+                <button class="btn btn-secondary active">Page {{ posts.number }}</button>
+            </a>
+        </li>
+        {% if posts.has_next %}
+        <li>
+            <a href="{% url 'user_profile' usr.id posts.next_page_number %}">
+                <button class="btn btn-secondary"> &raquo; </button>
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <button class="btn btn-secondary" disabled> &raquo; </button>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}

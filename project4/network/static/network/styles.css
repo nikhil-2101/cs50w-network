@@ -1,0 +1,98 @@
+body {
+    background-color: #f2f2f2;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+#bar {
+    color: #666;
+}
+
+#post-form {
+    color: #fff;
+    margin: 10px;
+}
+
+#posts {
+    margin: 0 10px;
+}
+
+.post-item {
+    border-top: 2px solid #333;
+    font-size: 18px;
+    padding: 10px 0;
+}
+
+.post-content {
+    color: #000;
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+.post-text {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.post-user {
+    color: #000;
+    font-family: Arial, sans-serif;
+    text-transform: capitalize;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.bar-nav {
+    background-color: #333;
+    color: #fff;
+}
+
+#user-head {
+    text-transform: capitalize;
+    margin-left: 5px;
+    color: #333;
+}
+
+#follow-data {
+    font-size: 16px;
+}
+
+.btn-link {
+    padding: 5px;
+}
+
+.page-item {
+    background-color: #666;
+    color: #fff;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-item, .navbar-brand {
+    padding: 10px;
+}
+
+.time-data {
+    color: #8b4513;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.like-btn {
+    background-color: transparent;
+    border: 1px solid #333;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+.like-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
